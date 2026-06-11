@@ -14,7 +14,6 @@ public:
             ans+=st.top();
             st.pop();
         }
-        reverse(ans.begin(),ans.end());
         return ans.size();
     }
 };
