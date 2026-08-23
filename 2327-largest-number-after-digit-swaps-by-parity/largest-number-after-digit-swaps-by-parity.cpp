@@ -7,15 +7,21 @@ public:
             num=num/10;
         }
         reverse(v.begin(),v.end());
+        priority_queue<int> even;
+        priority_queue<int> old;
+        for(int i=0;i<v.size();i++){
+            if(v[i]%2==0) even.push(v[i]);
+            else old.push(v[i]);
+        }
         int n = v.size();
         for(int i=0;i<n;i++){
-            int max_pos=i;
-            for(int j=i+1;j<n;j++){
-                if(v[j]>v[max_pos] && (v[j]-v[max_pos])%2==0){
-                    max_pos = j;
-                }
+            if(v[i]%2==0){
+                v[i]=even.top();
+                even.pop();
+            }else{
+                v[i]=old.top();
+                old.pop();
             }
-            swap(v[i],v[max_pos]);
         }
         int res = 0;
         for(int i:v){
